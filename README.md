@@ -12,7 +12,7 @@ Depending on the os, you may use the official repositories [nodesource builds](h
 # Move into the repository
 cd ex-js
 # Install dependencies
-npm i
+pnpm i
 # Install playwright browser for e2e tests
 npx playwright install
 ```
@@ -20,7 +20,7 @@ npx playwright install
 
 ## Simple syntax exercises
 
-> **Launch the tests by typing `npm run test`**, this will launch all tests and rerun them on file changes.
+> **Launch the tests by typing `pnpm run test`**, this will launch all tests and rerun them on file changes.
 > You can also launch test from your IDE.
 > You can browse tests, they are located in files ending with `.test.js`.
 
