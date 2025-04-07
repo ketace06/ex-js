@@ -11,8 +11,8 @@
  */
 export function crateUserObject() {
   const newObjectName = {
-    first_name: 'Toto',
-    last_name: 'Tutu',
+    first_name: "Toto",
+    last_name: "Tutu",
   }
   return newObjectName
 }
