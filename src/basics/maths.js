@@ -44,6 +44,5 @@ export function roundedAverage(grades) {
   if (grades.some((g) => typeof g !== 'number' || Number.isNaN(g))) {
     throw new Error('Invalid Input')
   }
-  const total = grades.reduce((sum, g) => sum + g, 0)
-  return parseFloat((total / grades.length).toFixed(1))
+  return parseFloat((grades.reduce((sum, g) => sum + g, 0) / grades.length).toFixed(1))
 }
