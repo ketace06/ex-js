@@ -3,7 +3,7 @@
  * @return {array<string>} An array with all words isolated, and with empty strings removed
  */
 export function splitAllStringsByWordAndFilterEmptyOnes(array) {
-  // Write your code here
+  return array.join(' ').split(' ').filter(Boolean)
 }
 
 /**
@@ -13,7 +13,8 @@ export function splitAllStringsByWordAndFilterEmptyOnes(array) {
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
  */
 export function concatenateArrays(array1, array2) {
-  // Write your code here
+  const newArray = [...array1, ...array2]
+  return newArray
 }
 
 /**
@@ -27,5 +28,7 @@ export function replaceElementsInArrayAtAGivenPlace(
   index,
   ...newElements
 ) {
-  // Write your code here
+  const copy = [...array]
+  copy.splice(index, newElements.length, ...newElements)
+  return copy
 }
