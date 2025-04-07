@@ -8,7 +8,8 @@
  * You need to change the color of the html element with the id "change-my-color"
  */
 export function getElementFromDomAndChangeColorToRed() {
-  // Write your code here
+  // Fix: style.color is a property, not a function
+  document.getElementById('change-my-color').style.color = 'red'
 }
 
 /**
@@ -16,7 +17,16 @@ export function getElementFromDomAndChangeColorToRed() {
  * The first paragraph must contain "Bonjour", the second "Toto"
  */
 export function addElementsInDOM() {
-  // Write your code here
+  const container = document.getElementById('add-your-elements-in-this-element')
+
+  const p1 = document.createElement('p')
+  p1.textContent = 'Bonjour'
+
+  const p2 = document.createElement('p')
+  p2.textContent = 'Toto'
+
+  container.appendChild(p1)
+  container.appendChild(p2)
 }
 
 /**
@@ -26,5 +36,14 @@ export function addElementsInDOM() {
  * @param {array<{name: string, color: string}>} listElements
  */
 export function addAListInDomFromAnArrayOfObjects(listElements) {
-  // Write your code here
+  const container = document.querySelector('#add-list-here')
+  const ul = document.createElement('ul')
+
+  for (const item of listElements) {
+    const li = document.createElement('li')
+    li.textContent = item.name
+    li.style.background = item.color
+    ul.appendChild(li)
+  }
+  container.appendChild(ul)
 }
