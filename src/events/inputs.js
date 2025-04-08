@@ -4,7 +4,13 @@
  * If input his empty, you should not trigger the alert
  */
 export function displayInputContentInAlertOnEnterKey() {
-  // Write your code here
+  const userInput = document.querySelector('#write-some-text')
+
+  userInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && userInput.value !== '') {
+      alert(userInput.value)
+    }
+  })
 }
 
 /**
@@ -13,7 +19,26 @@ export function displayInputContentInAlertOnEnterKey() {
  * the text should be added to a list of elements with id "list".
  */
 export function addElementsInListOnEnterKey() {
-  // Write your code here
+  const userListInput = document.querySelector('#list-input')
+  const list = document.querySelector('#list')
+
+  const newItems = () => {
+    const value = userListInput.value.trim()
+    if (value !== '') {
+      const newItem = document.createElement('li')
+      newItem.textContent = userListInput.value.trim()
+      list.appendChild(newItem)
+      userListInput.value = ''
+    }
+  }
+  userListInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      newItems()
+    }
+  })
+  userListInput.addEventListener('blur', (event) => {
+    newItems()
+  })
 }
 
 /**
@@ -21,5 +46,10 @@ export function addElementsInListOnEnterKey() {
  * Use the same list as the previous exercise. "#list"
  */
 export function removeElementsFromListWhenClicked() {
-  // Write your code here
+  const list = document.querySelector('#list')
+  list.addEventListener('click', (event) => {
+    if (event.target.tagName === 'LI') {
+      event.target.remove()
+    }
+  })
 }
