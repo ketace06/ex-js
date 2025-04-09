@@ -66,13 +66,11 @@ export function hoverFocusAndBlur() {
 export function changesOnInputEvents() {
   const input = document.querySelector('#focus-me')
   const labels = Array.from(document.querySelectorAll('label[for="focus-me"]'))
-  if (!input) return
 
   input.addEventListener('input', () => {
     const newColor = randomRGB()
 
-    input.dataset.defaultColor = newColor
-
+    input.style.borderColor = newColor
     labels.forEach((label) => {
       label.style.color = newColor
     })
