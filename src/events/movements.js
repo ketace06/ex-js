@@ -4,7 +4,12 @@
  * You need to display coordinates as follows : "x: 232, y: 332
  */
 export function mouseMovements() {
-  // Write your code here
+  document.addEventListener('mousemove', (event) => {
+    const p = document.getElementById('mouse-coordinates')
+    if (p) {
+      p.textContent = `x: ${event.clientX}, y: ${event.clientY}`
+    }
+  })
 }
 
 const randomRGB = () => {
@@ -13,7 +18,7 @@ const randomRGB = () => {
   const s = 255
   return `rgba(${o(r() * s)},${o(r() * s)},${o(r() * s)})`
 }
-let enteringColor = ''
+const enteringColor = ''
 
 /**
  * On the page, you have an input with the id "focus-me".
@@ -25,7 +30,29 @@ let enteringColor = ''
  * Third, when you loose focus of the field, you need to reset the border color to the default one.
  */
 export function hoverFocusAndBlur() {
-  // Write your code here
+  const input = document.querySelector('#focus-me')
+  const labels = Array.from(document.querySelectorAll('label[for="focus-me"]'))
+  const originals = labels.map((label) => label.textContent)
+  const usedColors = new Set()
+  const defaultColor = getComputedStyle(input).borderColor
+
+  input.addEventListener('mouseover', () => {
+    for (let i = 0; i < labels.length; i++) {
+      labels[i].textContent = 'Yes, you hover me!'
+    }
+    let color
+    do {
+      color = randomRGB()
+    } while (usedColors.has(color) || color === defaultColor)
+    usedColors.add(color)
+    input.style.borderColor = color
+  })
+  input.addEventListener('mouseout', () => {
+    for (let i = 0; i < labels.length; i++) {
+      labels[i].textContent = originals[i]
+    }
+    input.style.borderColor = defaultColor
+  })
 }
 
 /**
@@ -37,5 +64,17 @@ export function hoverFocusAndBlur() {
  * Take the opportunity to also apply this colour to the text of the 2 input labels.
  */
 export function changesOnInputEvents() {
-  // Write your code here
+  const input = document.querySelector('#focus-me')
+  const labels = Array.from(document.querySelectorAll('label[for="focus-me"]'))
+  if (!input) return
+
+  input.addEventListener('input', () => {
+    const newColor = randomRGB()
+
+    input.dataset.defaultColor = newColor
+
+    labels.forEach((label) => {
+      label.style.color = newColor
+    })
+  })
 }
